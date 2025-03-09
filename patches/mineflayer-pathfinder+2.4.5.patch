@@ -1,0 +1,21 @@
+diff --git a/node_modules/mineflayer-pathfinder/index.js b/node_modules/mineflayer-pathfinder/index.js
+index b38bd30..ae3754f 100644
+--- a/node_modules/mineflayer-pathfinder/index.js
++++ b/node_modules/mineflayer-pathfinder/index.js
+@@ -541,7 +541,7 @@ function inject (bot) {
+       let canPlace = true
+       if (placingBlock.jump) {
+         bot.setControlState('jump', true)
+-        canPlace = placingBlock.y + 1 < bot.entity.position.y
++        canPlace = placingBlock.y + 1.9 < bot.entity.position.y
+       }
+       if (canPlace) {
+         if (!lockEquipItem.tryAcquire()) return
+@@ -557,6 +557,7 @@ function inject (bot) {
+               .then(function () {
+                 // Dont release Sneak if the block placement was not successful
+                 bot.setControlState('sneak', false)
++                bot.setControlState('jump', false)
+                 if (bot.pathfinder.LOSWhenPlacingBlocks && placingBlock.returnPos) returningPos = placingBlock.returnPos.clone()
+               })
+               .catch(_ignoreError => {
